@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['catpedia.net', 'images6.fanpop.com']
+    domains: []
   }
 }
 
