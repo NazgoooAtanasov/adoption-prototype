@@ -1,0 +1,24 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+
+    border-bottom: 1px solid black;
+}
+
+.menu {
+    display: flex;
+}
+
+.menu-item {
+    display: block;
+    padding: 15px;
+    transition: background-color .3s ease-in-out;
+}
+
+.menu-item:hover {
+    background-color: var(--color-concrete);
+}
+
+.logo {
+    padding-left: 15px;
+}

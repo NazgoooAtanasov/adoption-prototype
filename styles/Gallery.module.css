@@ -1,0 +1,25 @@
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    flex-grow: 1;
+}
+
+@media only screen and (max-width: 720px) {
+    .card-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.animal-card {
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid black;
+
+    text-align: center;
+}
+
+.animal-card__image {
+    min-height: 250px;
+    background-color: lightgray;
+}

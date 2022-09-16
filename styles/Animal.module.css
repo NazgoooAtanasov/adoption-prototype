@@ -1,0 +1,17 @@
+.animal__name-description {
+    text-align: center;
+}
+
+.animal__adopt {
+    display: flex;
+}
+
+.animal__info,
+.animal__action-adopt {
+    flex: 1 0 50%;
+}
+
+.animal__submit-form {
+    width: 75%;
+    margin: 20px auto auto auto;
+}

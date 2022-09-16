@@ -1,0 +1,17 @@
+.field {
+    margin: 10px 0;
+}
+
+.field label, 
+.field input {
+    display: block;
+}
+
+.field label {
+    text-align: center;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+}

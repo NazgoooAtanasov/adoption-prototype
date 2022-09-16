@@ -1,0 +1,54 @@
+.user-type {
+    height: 100%;
+    display: flex;
+
+    flex-wrap: wrap;
+}
+
+.user-type .type {
+    height: 100%;
+    flex: 0 0 50%;
+
+    text-align: center;
+
+    transition: background-color .3s ease-in-out;
+}
+
+.user-type .type:first-of-type {
+    border-right: 1px dotted black;
+}
+
+.user-type .type button {
+    height: 100%;
+    background-color: inherit;
+    border: none;
+
+    outline: none;
+}
+
+.user-type .type:hover {
+    background-color: var(--color-concrete);
+}
+
+.user-type .type button:hover {
+    cursor: pointer;
+}
+
+.join-section {
+    height: 100vh;
+    width: 75%;
+    margin: auto auto auto;
+    padding-top: 10%;
+}
+
+.submit {
+    width: 100%;
+    padding: 20px;
+    border: none;
+
+    background-color: lightblue;
+}
+
+.submit:hover {
+    cursor: pointer;
+}
