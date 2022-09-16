@@ -3,7 +3,10 @@ import Link from "next/link";
 import logo from "../public/adoption-logo.svg";
 import styles from "../styles/Layout.module.css";
 
-const Layout = ({ children, hasLogo = true }) => {
+const Layout: React.FunctionComponent<{ children: any; hasLogo?: boolean }> = ({
+  children,
+  hasLogo = true,
+}) => {
   return (
     <>
       <header className={styles.header}>
