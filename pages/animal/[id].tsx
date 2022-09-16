@@ -59,60 +59,64 @@ const Animal: NextPage<{ animal: Animal }> = ({ animal }) => {
         />
       </Head>
       <Layout>
-        <section className={styles["animal"]}>
-          <div>
-            {animal.images.map((img, idx) => (
-              <Image key={idx} src={img} alt="" width={300} height={300} />
-            ))}
-          </div>
-
-          <div className={styles["animal__name-description"]}>
-            <h1>{animal.name}</h1>
-            <p>{animal.description}</p>
-          </div>
-
-          <div className={styles["animal__adopt"]}>
-            <div className={styles["animal__info"]}>
-              <div>{animal.age}</div>
-              <div>{animal.type}</div>
-              <div>{animal.status}</div>
-              <div>{animal.gender}</div>
+        {animal ? (
+          <section className={styles["animal"]}>
+            <div>
+              {animal.images.map((img, idx) => (
+                <Image key={idx} src={img} alt="" width={300} height={300} />
+              ))}
             </div>
 
-            <div className={styles["animal__action-adopt"]}>
-              <button
-                onClick={() => setFormVisibility(!adoptionFormVisibility)}
+            <div className={styles["animal__name-description"]}>
+              <h1>{animal.name}</h1>
+              <p>{animal.description}</p>
+            </div>
+
+            <div className={styles["animal__adopt"]}>
+              <div className={styles["animal__info"]}>
+                <div>{animal.age}</div>
+                <div>{animal.type}</div>
+                <div>{animal.status}</div>
+                <div>{animal.gender}</div>
+              </div>
+
+              <div className={styles["animal__action-adopt"]}>
+                <button
+                  onClick={() => setFormVisibility(!adoptionFormVisibility)}
+                >
+                  Adopt
+                </button>
+              </div>
+            </div>
+
+            {adoptionFormVisibility ? (
+              <form
+                className={styles["animal__submit-form"]}
+                onSubmit={(event) => handleSubmit(event)}
               >
-                Adopt
-              </button>
-            </div>
-          </div>
+                <InputField
+                  type="string"
+                  name="firstName"
+                  placeholder="First name"
+                />
 
-          {adoptionFormVisibility ? (
-            <form
-              className={styles["animal__submit-form"]}
-              onSubmit={(event) => handleSubmit(event)}
-            >
-              <InputField
-                type="string"
-                name="firstName"
-                placeholder="First name"
-              />
+                <InputField
+                  type="string"
+                  name="lastName"
+                  placeholder="Last name"
+                />
 
-              <InputField
-                type="string"
-                name="lastName"
-                placeholder="Last name"
-              />
+                <InputField type="string" name="email" placeholder="Email" />
 
-              <InputField type="string" name="email" placeholder="Email" />
-
-              <button type="submit">Submit</button>
-            </form>
-          ) : (
-            <></>
-          )}
-        </section>
+                <button type="submit">Submit</button>
+              </form>
+            ) : (
+              <></>
+            )}
+          </section>
+        ) : (
+          <></>
+        )}
       </Layout>
     </>
   );
