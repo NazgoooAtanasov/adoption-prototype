@@ -40,6 +40,7 @@ const SearchPage: NextPage = () => {
           name="description"
           content="The search page of the Adoption-demo"
         />
+        <meta name="color-scheme" content="light only" />
       </Head>
       <main className={styles["search-page"]}>
         <div className={styles["search-input-holder"]}>

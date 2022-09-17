@@ -12,6 +12,7 @@ const Home: NextPage = () => {
         <title>Adoption-demo - Home</title>
         <meta name="description" content="The home page of the Adoption-demo" />
         <link rel="icon" href="/favicon.ico" />
+        <meta name="color-scheme" content="light only" />
       </Head>
 
       <Layout hasLogo={false}>
