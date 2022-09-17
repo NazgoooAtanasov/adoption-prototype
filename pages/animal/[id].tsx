@@ -57,6 +57,7 @@ const Animal: NextPage<{ animal: Animal }> = ({ animal }) => {
           name="description"
           content="The animal page of the Adoption-demo"
         />
+        <meta name="color-scheme" content="light only" />
       </Head>
       <Layout>
         {animal ? (

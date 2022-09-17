@@ -36,6 +36,7 @@ const Gallery: NextPage<{ animals: Animal[] }> = ({ animals }) => {
           name="description"
           content="The gallery page of the Adoption-demo"
         />
+        <meta name="color-scheme" content="light only" />
       </Head>
       <Layout>
         <GalleryContainer animals={animals} />
