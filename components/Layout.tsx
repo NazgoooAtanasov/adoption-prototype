@@ -29,7 +29,7 @@ const Layout: React.FunctionComponent<{ children: any; hasLogo?: boolean }> = ({
             <a className={styles["menu-item"]}>Search</a>
           </Link>
           <Link href={"/join"}>
-            <a className={styles["menu-item"]}>Join us</a>
+            <a className={styles["menu-item"]}>Join</a>
           </Link>
         </div>
       </header>
