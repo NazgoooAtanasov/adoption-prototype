@@ -39,29 +39,33 @@ const Animal: NextPage<{ animal: Animal }> = ({ animal }) => {
         <meta name="color-scheme" content="light only" />
       </Head>
       <Layout>
-        <section className={styles["animal"]}>
-          <div className={styles["animal__image"]}>
-            <Image
-              src={`https://imagedelivery.net/Ed3hEAVVzEILb2ejGtGJBQ/${animal.images[0]}/public`}
-              alt={animal.name}
-              loading="eager"
-              layout="fill"
-            />
-          </div>
-          <h1>{animal.name}</h1>
-          <p>{animal.description}</p>
+        {animal ? (
+          <section className={styles["animal"]}>
+            <div className={styles["animal__image"]}>
+              <Image
+                src={`https://imagedelivery.net/Ed3hEAVVzEILb2ejGtGJBQ/${animal.images[0]}/public`}
+                alt={animal.name}
+                loading="eager"
+                layout="fill"
+              />
+            </div>
+            <h1>{animal.name}</h1>
+            <p>{animal.description}</p>
 
-          <div className={styles["animal__info"]}>
-            <div>Age</div>
-            <div>{animal.age}</div>
-            <div>Breed</div>
-            <div>{animal.type}</div>
-            <div>Gender</div>
-            <div>{animal.gender}</div>
-            <div>Health status</div>
-            <div>{animal.status}</div>
-          </div>
-        </section>
+            <div className={styles["animal__info"]}>
+              <div>Age</div>
+              <div>{animal.age}</div>
+              <div>Breed</div>
+              <div>{animal.type}</div>
+              <div>Gender</div>
+              <div>{animal.gender}</div>
+              <div>Health status</div>
+              <div>{animal.status}</div>
+            </div>
+          </section>
+        ) : (
+          <></>
+        )}
       </Layout>
     </>
   );
