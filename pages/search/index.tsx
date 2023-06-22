@@ -5,18 +5,8 @@ import { useState } from "react";
 import InputField from "../../components/forms/InputField";
 import Layout from "../../components/Layout";
 import styles from "../../styles/Search.module.css";
-
-import { GalleryContainer } from "../gallery";
-
-const GalleryContainerHanlder: React.FunctionComponent<{
-  animals: Animal[] | null;
-}> = ({ animals }) => {
-  if (!animals) return <div>Type in to search.</div>;
-
-  if (animals.length <= 0) return <div>No results found.</div>;
-
-  return <GalleryContainer animals={animals} />;
-};
+import galleryStyles from "../../styles/Gallery.module.css";
+import Image from "next/image";
 
 const SearchPage: NextPage = () => {
   const [animals, setAnimals] = useState<Animal[] | null>(null);
@@ -35,11 +25,8 @@ const SearchPage: NextPage = () => {
   return (
     <Layout>
       <Head>
-        <title>Adoption-demo - Search</title>
-        <meta
-          name="description"
-          content="The search page of the Adoption-demo"
-        />
+        <title>Adoption - Search</title>
+        <meta name="description" content="The search page of the Adoption" />
         <meta name="color-scheme" content="light only" />
       </Head>
       <main className={styles["search-page"]}>
@@ -49,7 +36,30 @@ const SearchPage: NextPage = () => {
           </form>
         </div>
 
-        <GalleryContainerHanlder animals={animals} />
+        <section className={galleryStyles["animal-list"]}>
+          {animals ? (
+            animals.map((animal: Animal, idx: number) => (
+              <a key={idx} href={"/animal/" + animal.id}>
+                <div className={galleryStyles["animal"]}>
+                  <div className={galleryStyles["animal__image"]}>
+                    <Image
+                      src={`https://imagedelivery.net/Ed3hEAVVzEILb2ejGtGJBQ/${animal.images[0]}/public`}
+                      alt={animal.name}
+                      layout="fill"
+                      loading="lazy"
+                    />
+                  </div>
+                  <h3>{animal.name}</h3>
+                  <div className={galleryStyles["animal-card__information"]}>
+                    {animal.description}
+                  </div>
+                </div>
+              </a>
+            ))
+          ) : (
+            <></>
+          )}
+        </section>
       </main>
     </Layout>
   );

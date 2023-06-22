@@ -1,17 +1,23 @@
-.animal__name-description {
-    text-align: center;
+@media (min-width: 1023px) {
+    .animal {
+        padding: 0 200px;
+    }
 }
 
-.animal__adopt {
+.animal__image {
+    position: relative;
+    padding-bottom: 100%;
+}
+
+.animal__info {
     display: flex;
+    flex-wrap: wrap;
+    background: repeating-linear-gradient(#f7f7f7 0,#f7f7f7 30px,#fff 30px,#fff 60px)
 }
 
-.animal__info,
-.animal__action-adopt {
-    flex: 1 0 50%;
-}
-
-.animal__submit-form {
-    width: 75%;
-    margin: 20px auto auto auto;
+.animal__info > * {
+    flex: 0 0 50%;
+    padding: 4px 9px;
+    min-height: 30px;
+    background: unset;
 }
