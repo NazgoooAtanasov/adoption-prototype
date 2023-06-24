@@ -31,7 +31,6 @@ export const getStaticProps = async (context: any) => {
 };
 
 const Animal: NextPage<{ animal: Animal }> = ({ animal }) => {
-  console.log(animal.location);
   return (
     <>
       <Head>
