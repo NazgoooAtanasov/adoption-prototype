@@ -1,6 +1,5 @@
 .represent {
     display: flex;
     justify-content: center;
-
-    margin: auto;
+    margin: auto 10%;
 }
