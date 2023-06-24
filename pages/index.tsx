@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Layout from "../components/Layout";
-import logo from "../public/adoption-logo.svg";
+import logo from "../public/logo.webp";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
@@ -17,7 +17,7 @@ const Home: NextPage = () => {
 
       <Layout hasLogo={false}>
         <section className={styles.represent}>
-          <Image src={logo} alt="logo" height={120} width={1000} />
+          <Image src={logo} alt="logo" />
         </section>
       </Layout>
     </>

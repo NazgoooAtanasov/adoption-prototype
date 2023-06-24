@@ -31,6 +31,7 @@ export const getStaticProps = async (context: any) => {
 };
 
 const Animal: NextPage<{ animal: Animal }> = ({ animal }) => {
+  console.log(animal.location);
   return (
     <>
       <Head>
@@ -49,8 +50,11 @@ const Animal: NextPage<{ animal: Animal }> = ({ animal }) => {
                 layout="fill"
               />
             </div>
-            <h1>{animal.name}</h1>
-            <p>{animal.description}</p>
+
+            <h1 className={styles["animal__name"]}>{animal.name}</h1>
+            <p className={styles["animal__description"]}>
+              {animal.description}
+            </p>
 
             <div className={styles["animal__info"]}>
               <div>Age</div>
@@ -61,6 +65,8 @@ const Animal: NextPage<{ animal: Animal }> = ({ animal }) => {
               <div>{animal.gender}</div>
               <div>Health status</div>
               <div>{animal.status}</div>
+              <div>Location</div>
+              <div>{animal.location}</div>
             </div>
           </section>
         ) : (

@@ -1,9 +1,3 @@
-@media (min-width: 1023px) {
-    .animal {
-        padding: 0 200px;
-    }
-}
-
 .animal__image {
     position: relative;
     padding-bottom: 100%;
@@ -20,4 +14,18 @@
     padding: 4px 9px;
     min-height: 30px;
     background: unset;
+}
+
+@media (min-width: 1023px) {
+    .animal {
+        padding: 0 30%;
+    }
+}
+
+@media (max-width: 767px) {
+    .animal__name,
+    .animal__description,
+    .animal__info {
+        padding: 0 20px;
+    }
 }
