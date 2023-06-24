@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import logo from "../public/adoption-logo.svg";
+import logo from "../public/logo.webp";
 import styles from "../styles/Layout.module.css";
 
 const Layout: React.FunctionComponent<{ children: any; hasLogo?: boolean }> = ({
@@ -10,17 +10,22 @@ const Layout: React.FunctionComponent<{ children: any; hasLogo?: boolean }> = ({
   return (
     <>
       <header className={styles.header}>
-        <div className={styles.logo}>
-          {hasLogo ? (
-            <Link href={"/"}>
-              <a>
-                <Image src={logo} alt="logo" />
-              </a>
-            </Link>
-          ) : (
-            <></>
-          )}
-        </div>
+        {hasLogo ? (
+          <Link href="/">
+            <a className={styles["logo-wrapper"]}>
+              <div className={styles["logo"]}>
+                <Image
+                  src={logo}
+                  alt="logo"
+                  layout="fill"
+                  objectFit="contain"
+                />
+              </div>
+            </a>
+          </Link>
+        ) : (
+          <></>
+        )}
         <div className={styles.menu}>
           <Link href={"/gallery"}>
             <a className={styles["menu-item"]}>Gallery</a>
