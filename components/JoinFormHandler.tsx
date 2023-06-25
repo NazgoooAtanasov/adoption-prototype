@@ -1,6 +1,6 @@
 import InputField from "./forms/InputField";
 import styles from "../styles/Join.module.css";
-import { MutableRefObject, useEffect, useRef } from "react";
+import { FormEvent, MutableRefObject, useEffect, useRef } from "react";
 
 export enum JOIN_TYPE {
   ORGANIZATION,
@@ -11,17 +11,50 @@ type JoinFormProps = {
   reference: MutableRefObject<HTMLElement | null>;
 };
 
+async function onSubmit(event: FormEvent) {
+  event.preventDefault();
+  const formData = new FormData(event.target as HTMLFormElement);
+
+  const json: {
+    [key: string]: string | undefined | null;
+  } = {
+    email: null,
+    password: null,
+    role: null,
+
+    firstname: null,
+    lastname: null,
+    orgname: null,
+  };
+  [...formData.keys()].forEach((key) => {
+    json[key] = formData.get(key)?.toString();
+  });
+
+  const joinRequest = await fetch(`/api/join`, {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(json),
+  });
+
+  const joinResponse = await joinRequest.json();
+}
+
 const UserForm: React.FunctionComponent<JoinFormProps> = ({ reference }) => {
   return (
     <section className={styles["join-section"]} ref={reference}>
       <h2>Join us as an user</h2>
-      <form>
-        <InputField type="text" name="firstName" placeholder="First name" />
-        <InputField type="text" name="lastName" placeholder="Last name" />
-        <InputField type="email" name="email" placeholder="email" />
+      <form onSubmit={(e) => onSubmit(e)}>
+        <InputField type="text" name="firstname" placeholder="First name" />
+        <InputField type="text" name="lastname" placeholder="Last name" />
+        <InputField type="email" name="email" placeholder="Email" />
         <InputField type="password" name="password" placeholder="Password" />
+        <InputField type="hidden" name="role" value="USER" />
 
-        <button className={styles.submit}>Register</button>
+        <button type="submit" className={styles.submit}>
+          Register
+        </button>
       </form>
     </section>
   );
@@ -33,24 +66,15 @@ const OrganizationForm: React.FunctionComponent<JoinFormProps> = ({
   return (
     <section className={styles["join-section"]} ref={reference}>
       <h2>Join us as a organization</h2>
-      <form>
-        <InputField
-          type="text"
-          name="organizationName"
-          placeholder="Name of organization"
-        />
-        <InputField
-          type="text"
-          name="addressOfOrganization"
-          placeholder="Address of organization"
-        />
-        <InputField
-          type="email"
-          name="email"
-          placeholder="emailOfOrganization"
-        />
+      <form onSubmit={(e) => onSubmit(e)}>
+        <InputField type="text" name="orgname" placeholder="Name" />
+        <InputField type="email" name="email" placeholder="Email" />
+        <InputField type="password" name="password" placeholder="Password" />
+        <InputField type="hidden" name="role" value="ORGANIZATION" />
 
-        <button className={styles.submit}>Register</button>
+        <button type="submit" className={styles.submit}>
+          Register
+        </button>
       </form>
     </section>
   );
