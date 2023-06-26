@@ -6,9 +6,15 @@ import styles from "../../styles/Gallery.module.css";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const prisma = new PrismaClient();
-  const animals = await prisma.animal.findMany();
+  const animals = await prisma.animal.findMany({
+    where: {
+      images: {
+        isEmpty: false,
+      },
+    },
+  });
   return { props: { animals } };
 };
 

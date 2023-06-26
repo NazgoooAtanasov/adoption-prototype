@@ -86,7 +86,10 @@ export default async function handler(
       .json({ success: false, message: "Error in uploading image." });
   }
 
-  res.status(201).json({ success: true, message: "Image update succesfully" });
+  res.status(201).json({
+    success: true,
+    message: "Image update succesfully. Check the animal page at",
+  });
 }
 export const config = {
   api: {

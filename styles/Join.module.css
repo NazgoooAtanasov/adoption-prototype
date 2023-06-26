@@ -58,3 +58,22 @@
 .submit:hover {
     cursor: pointer;
 }
+
+.error-message,
+.success-message {
+    width: 100%;
+    padding: 20px; 
+    text-align: center;
+}
+
+.error-message {
+    color: #eb3223;
+    border: 1px solid #eb3223;
+    background-color: rgba(255, 0, 0, 0.05);
+}
+
+.success-message {
+    color: green;
+    border: 1px solid green;
+    background-color: rgba(0, 255, 0, 0.3);
+}

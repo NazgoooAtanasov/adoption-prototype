@@ -7,8 +7,12 @@ import styles from "../../styles/Enter.module.css";
 
 const Enter: NextPage = () => {
   const [formError, setFormError] = useState<string | null>(null);
+  const [success, setSuccessMessage] = useState<string | null>(null);
+
   async function login(e: FormEvent) {
     e.preventDefault();
+    setFormError(null);
+    setSuccessMessage(null);
 
     const formData = new FormData(e.target as HTMLFormElement);
     const json: {
@@ -35,6 +39,8 @@ const Enter: NextPage = () => {
 
     if (!joinResponse.success) {
       setFormError(joinResponse.message!);
+    } else {
+      setSuccessMessage(joinResponse.message!);
     }
 
     document.cookie = `jwt_token=${joinResponse.token}; SameSite=None; Secure`;
@@ -44,6 +50,12 @@ const Enter: NextPage = () => {
       <main className={styles["enter"]}>
         {formError ? (
           <div className={styles["error-message"]}>{formError}</div>
+        ) : (
+          <></>
+        )}
+
+        {success ? (
+          <div className={styles["success-message"]}>{success}</div>
         ) : (
           <></>
         )}

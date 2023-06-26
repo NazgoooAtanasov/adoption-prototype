@@ -72,5 +72,9 @@ export default async function handler(
 
   res
     .status(200)
-    .json({ success: true, message: "Animal created.", animalId: animal.id });
+    .json({
+      success: true,
+      message: "Animal created. Please assign an image.",
+      animalId: animal.id,
+    });
 }

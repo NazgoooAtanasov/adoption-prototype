@@ -1,6 +1,12 @@
 import InputField from "./forms/InputField";
 import styles from "../styles/Join.module.css";
-import { FormEvent, MutableRefObject, useEffect, useRef } from "react";
+import {
+  FormEvent,
+  MutableRefObject,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 export enum JOIN_TYPE {
   ORGANIZATION,
@@ -11,9 +17,16 @@ type JoinFormProps = {
   reference: MutableRefObject<HTMLElement | null>;
 };
 
-async function onSubmit(event: FormEvent) {
+async function onSubmit(
+  event: FormEvent,
+  setError: (...args: any[]) => void,
+  setResponse: (...args: any[]) => void
+) {
   event.preventDefault();
   const formData = new FormData(event.target as HTMLFormElement);
+
+  setError(null);
+  setResponse(null);
 
   const json: {
     [key: string]: string | undefined | null;
@@ -38,14 +51,32 @@ async function onSubmit(event: FormEvent) {
     body: JSON.stringify(json),
   });
 
-  const joinResponse = await joinRequest.json();
+  const joinResponse: { success: boolean; message: string } =
+    await joinRequest.json();
+
+  if (!joinResponse.success) {
+    setError(joinResponse.message);
+  } else {
+    setResponse(joinResponse.message);
+  }
 }
 
 const UserForm: React.FunctionComponent<JoinFormProps> = ({ reference }) => {
+  const [error, setError] = useState<string | null>(null);
+  const [successMessage, setSuccessMesssage] = useState<string | null>(null);
+
   return (
     <section className={styles["join-section"]} ref={reference}>
       <h2>Join us as an user</h2>
-      <form onSubmit={(e) => onSubmit(e)}>
+
+      {error ? <div className={styles["error-message"]}>{error}</div> : <></>}
+      {successMessage ? (
+        <div className={styles["success-message"]}>{successMessage}</div>
+      ) : (
+        <></>
+      )}
+
+      <form onSubmit={(e) => onSubmit(e, setError, setSuccessMesssage)}>
         <InputField type="text" name="firstname" placeholder="First name" />
         <InputField type="text" name="lastname" placeholder="Last name" />
         <InputField type="email" name="email" placeholder="Email" />
@@ -63,10 +94,21 @@ const UserForm: React.FunctionComponent<JoinFormProps> = ({ reference }) => {
 const OrganizationForm: React.FunctionComponent<JoinFormProps> = ({
   reference,
 }) => {
+  const [error, setError] = useState<string | null>(null);
+  const [successMessage, setSuccessMesssage] = useState<string | null>(null);
+
   return (
     <section className={styles["join-section"]} ref={reference}>
       <h2>Join us as a organization</h2>
-      <form onSubmit={(e) => onSubmit(e)}>
+
+      {error ? <div className={styles["error-message"]}>{error}</div> : <></>}
+      {successMessage ? (
+        <div className={styles["success-message"]}>{successMessage}</div>
+      ) : (
+        <></>
+      )}
+
+      <form onSubmit={(e) => onSubmit(e, setError, setSuccessMesssage)}>
         <InputField type="text" name="orgname" placeholder="Name" />
         <InputField type="email" name="email" placeholder="Email" />
         <InputField type="password" name="password" placeholder="Password" />

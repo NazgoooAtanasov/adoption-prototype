@@ -77,5 +77,7 @@ export default async function handler(
   const token = jwt.sign({ email: body.email, role: body.role }, jwt_secret!, {
     expiresIn: "1h",
   });
-  res.status(200).json({ success: true, token: token });
+  res
+    .status(200)
+    .json({ success: true, token: token, message: "Successfully authorized." });
 }

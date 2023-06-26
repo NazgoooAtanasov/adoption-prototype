@@ -35,10 +35,10 @@ const Layout: React.FunctionComponent<{
             <a className={styles["menu-item"]}>Search</a>
           </Link>
           <Link href={"/join"}>
-            <a className={styles["menu-item"]}>Join</a>
+            <a className={styles["menu-item"]}>Sign up</a>
           </Link>
           <Link href={"/enter"}>
-            <a className={styles["menu-item"]}>Enter</a>
+            <a className={styles["menu-item"]}>Sign in</a>
           </Link>
         </div>
       </header>
