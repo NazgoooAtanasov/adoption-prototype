@@ -4,12 +4,14 @@ export interface InputFieldProps {
   name: string;
   type: string;
   placeholder?: string;
+  value?: string;
 }
 
 const InputField: React.FunctionComponent<InputFieldProps> = ({
   name,
   type,
   placeholder,
+  value
 }) => {
   return (
     <div className={styles.field}>
@@ -18,6 +20,7 @@ const InputField: React.FunctionComponent<InputFieldProps> = ({
         name={name}
         className={styles.input}
         placeholder={placeholder}
+        value={value}
       />
     </div>
   );

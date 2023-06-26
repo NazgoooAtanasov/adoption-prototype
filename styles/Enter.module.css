@@ -1,0 +1,44 @@
+.enter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    flex-direction: column;
+}
+
+.enter form {
+    width: 50%;
+}
+
+.error-message,
+.success-message {
+    width: 50%;
+    padding: 20px; 
+    text-align: center;
+}
+
+.error-message {
+    color: #eb3223;
+    border: 1px solid #eb3223;
+    background-color: rgba(255, 0, 0, 0.05);
+}
+
+.success-message {
+    color: green;
+    border: 1px solid green;
+    background-color: rgba(0, 255, 0, 0.3);
+}
+
+.select-field {
+    width: 100%;
+    padding: 10px;
+}
+
+.submit {
+    margin-top: 10px;
+    width: 100%;
+    padding: 20px;
+    border: none;
+
+    background-color: lightblue;
+}

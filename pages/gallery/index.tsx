@@ -4,14 +4,37 @@ import Layout from "../../components/Layout";
 import Image from "next/image";
 import styles from "../../styles/Gallery.module.css";
 import Head from "next/head";
+import { useEffect, useState } from "react";
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const prisma = new PrismaClient();
-  const animals = await prisma.animal.findMany();
+  const animals = await prisma.animal.findMany({
+    where: {
+      images: {
+        isEmpty: false,
+      },
+    },
+  });
   return { props: { animals } };
 };
 
 const Gallery: NextPage<{ animals: Animal[] }> = ({ animals }) => {
+  const [showOrgMenu, setShowOrgMenu] = useState(false);
+  useEffect(() => {
+    const jwtToken = localStorage.getItem("jwt_token");
+    if (jwtToken) {
+      fetch("/api/validate", {
+        method: "POST",
+        body: JSON.stringify({ token: jwtToken }),
+        headers: {
+          "Content-type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((response) => setShowOrgMenu(response.showOrgMenu));
+    }
+  }, []);
+
   return (
     <>
       <Head>
@@ -19,7 +42,7 @@ const Gallery: NextPage<{ animals: Animal[] }> = ({ animals }) => {
         <meta name="description" content="The gallery page of the Adoption" />
         <meta name="color-scheme" content="light only" />
       </Head>
-      <Layout>
+      <Layout showOrgMenu={showOrgMenu}>
         <main className={styles["animal-list"]}>
           {animals.map((animal: Animal, idx: number) => (
             <a key={idx} href={"/animal/" + animal.id}>
