@@ -29,3 +29,12 @@
         padding: 0 20px;
     }
 }
+
+.submit-request {
+    margin-top: 10px;
+    width: 100%;
+    padding: 20px;
+    border: none;
+
+    background-color: lightblue;
+}

@@ -21,3 +21,28 @@ model Animal {
     location    String
     images      String[]
 }
+
+model User {
+    id          String      @id @default(uuid())
+    email       String
+    password    String
+    role        Role
+
+    firstname   String?
+    lastname    String?
+    orgname     String?
+}
+
+model Request {
+    id          String @id @default(uuid())
+    firstname   String
+    lastname    String
+    email       String
+    description String?
+    animalId    String
+}
+
+enum Role {
+    USER
+    ORGANIZATION
+}
