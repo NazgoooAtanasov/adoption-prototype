@@ -33,6 +33,15 @@ model User {
     orgname     String?
 }
 
+model Request {
+    id          String @id @default(uuid())
+    firstname   String
+    lastname    String
+    email       String
+    description String?
+    animalId    String
+}
+
 enum Role {
     USER
     ORGANIZATION
