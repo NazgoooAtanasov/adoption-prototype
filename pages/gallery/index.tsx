@@ -21,15 +21,9 @@ export const getServerSideProps = async () => {
 const Gallery: NextPage<{ animals: Animal[] }> = ({ animals }) => {
   const [showOrgMenu, setShowOrgMenu] = useState(false);
   useEffect(() => {
-    const jwtToken = localStorage.getItem("jwt_token");
-    if (jwtToken) {
-      fetch("/api/validate", {
-        method: "POST",
-        body: JSON.stringify({ token: jwtToken }),
-        headers: {
-          "Content-type": "application/json",
-        },
-      })
+    const hasJwtToken = document.cookie.includes("jwt_token");
+    if (hasJwtToken) {
+      fetch("/api/validate", { method: "POST" })
         .then((response) => response.json())
         .then((response) => setShowOrgMenu(response.showOrgMenu));
     }
