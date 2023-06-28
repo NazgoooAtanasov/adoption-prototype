@@ -110,7 +110,9 @@ const CreatePage = () => {
           <InputField type="number" name="age" placeholder="Age" />
           <InputField type="text" name="status" placeholder="Status" />
           <InputField type="text" name="location" placeholder="Location" />
-          <button type="submit"> submit </button>
+          <button className={styles.submit} type="submit">
+            Submit
+          </button>
         </form>
 
         {animalCreated ? (
@@ -120,8 +122,16 @@ const CreatePage = () => {
               If you don&apos;t subit an image, the listing wont appear in the
               gallery.
             </sup>
-            <InputField type="file" name="image" placeholder="Image" />
-            <button type="submit"> Submit </button>
+            <InputField
+              type="file"
+              name="image"
+              placeholder="Image"
+              accept="image/png, image/jpg"
+            />
+            <button className={styles.submit} type="submit">
+              {" "}
+              Submit{" "}
+            </button>
           </form>
         ) : (
           <></>

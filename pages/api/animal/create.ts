@@ -60,21 +60,25 @@ export default async function handler(
     const prisma = new PrismaClient();
     animal = await prisma.animal.create({
       data: {
+        organization: {
+          connect: {
+            email: payload.email,
+          },
+        },
         ...req.body,
       },
     });
   } catch (error) {
+    console.log(error);
     return res.status(400).json({
       success: false,
       message: "There was an error creating the gallery entry.",
     });
   }
 
-  res
-    .status(200)
-    .json({
-      success: true,
-      message: "Animal created. Please assign an image.",
-      animalId: animal.id,
-    });
+  res.status(200).json({
+    success: true,
+    message: "Animal created. Please assign an image.",
+    animalId: animal.id,
+  });
 }
